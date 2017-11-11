@@ -10,7 +10,6 @@ class DatabaseManager {
         
         var callback = (db) => {
             this.database = db;
-            console.log(this.ourDb);
         }   
         
         MongoClient.connect(url, function (err, db) {
@@ -38,12 +37,19 @@ class DatabaseManager {
         var collection = this.database.collection('test2');
     }
 
-    update(record) {   
+    update(record) {
+        // {id: "", text: ""}
+        var collection2 = this.database.collection('test2');
+        collection2.insert(record, {w:1}, function(err, result) {
+            collection.update({mykey:1}, {$set:{fieldtoupdate: "field4567"}}, {w:1}, function(err, result) {});
+        });
     }
 }
 
 module.exports = new DatabaseManager();
 var dbm = new DatabaseManager();
+
 setTimeout(() => {
-    dbm.putDummyData()
+    dbm.update({mykey:1, "fieldtoupdate": "field123" });
+    dbm.getAll();
 }, 5000);
