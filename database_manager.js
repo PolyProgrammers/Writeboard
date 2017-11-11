@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient,
     test = require('assert');
 
-var url =  "mongodb://heroku_fthfkxg6:calpoly69@ds259305.mlab.com:59305/heroku_fthfkxg6";
+var url =  "mongodb://wall:wall@ds259305.mlab.com:59305/heroku_fthfkxg6";
 console.log(url)
 // Connect to the db
 MongoClient.connect(url, function (err, db) {
