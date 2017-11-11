@@ -1,13 +1,12 @@
- var MongoClient = require('mongodb').MongoClient,
-        test = require('assert');
-    var url =  "mongodb://wall:wall@ds259305.mlab.com:59305/heroku_fthfkxg6";
+var MongoClient = require('mongodb').MongoClient,
+    test = require('assert');
+var url =  "mongodb://wall:wall@ds259305.mlab.com:59305/heroku_fthfkxg6";
     
 
 class DatabaseManager {
     
     constructor() {
         // Connect to the db
-        
         var callback = (db) => {
             this.database = db;
         }   
@@ -20,15 +19,10 @@ class DatabaseManager {
     }
     
     getAll() {
-        
-        var getAllCallback = (items) => {
-            console.log(items);
-            //TODO pass these back to the sockect
-        }
-        
-        var wallCollection = this.database.collection('wall');
-        wallCollection.find().toArray(function(err, items) {
-            getAllCallback(items);
+        var collection2 = this.database.collection('test2');
+        collection2.find().toArray(function(err, items) {
+            console.log("items fetched:")
+            return items;
         });
     }
 
@@ -55,6 +49,9 @@ module.exports = new DatabaseManager();
 var dbm = new DatabaseManager();
 
 setTimeout(() => {
+    console.log("Running DBM tests:");
     dbm.update({mykey:1, "fieldtoupdate": "field123" });
+    console.log("Update() Test completed.");
     dbm.getAll();
+    console.log("GetAll Test completed.")
 }, 5000);
