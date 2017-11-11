@@ -20,10 +20,15 @@ class DatabaseManager {
     }
     
     getAll() {
+        
+        var getAllCallback = (items) => {
+            console.log(items);
+            //TODO pass these back to the sockect
+        }
+        
         var wallCollection = this.database.collection('wall');
         wallCollection.find().toArray(function(err, items) {
-            console.log(items);
-            return items;
+            getAllCallback(items);
         });
     }
 
