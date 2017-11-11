@@ -41,7 +41,7 @@ class DatabaseManager {
         // {id: "", text: ""}
         var collection2 = this.database.collection('test2');
         collection2.insert(record, {w:1}, function(err, result) {
-            collection.update({mykey:1}, {$set:{fieldtoupdate: "field4567"}}, {w:1}, function(err, result) {});
+            collection2.update({mykey:1}, {$set:{fieldtoupdate: "field4567"}}, {w:1}, function(err, result) {});
         });
     }
 }
