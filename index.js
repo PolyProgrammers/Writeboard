@@ -16,6 +16,26 @@ app.get('/', function(request, response) {
 });
 
 io.on('connection', function(socket){
+  console.log('a user connected');
+
+  var params = {
+    thing: socket.id
+  }
+
+  socket.emit('update', params);
+
+});
+
+
+setTimeout(function() {
+
+    var params = {
+      thing: "hello everyone!"
+    };
+    io.emit('message', params);
+
+}, 10000);
+
 http.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
