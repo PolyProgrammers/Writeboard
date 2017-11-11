@@ -19,10 +19,15 @@ class DatabaseManager {
     }
     
     getAll() {
-        var collection2 = this.database.collection('test2');
-        collection2.find().toArray(function(err, items) {
+        
+        var callbackWith = (items) => {
             console.log("items fetched:")
             return items;
+        } 
+        
+        var collection2 = this.database.collection('test2');
+        collection2.find().toArray(function(err, items) {
+            callbackWith(items)
         });
     }
 
