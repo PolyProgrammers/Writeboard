@@ -1,39 +1,23 @@
-# node-js-getting-started
-
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+# Whiteboard Node.js 
 
 This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
 
-## Running Locally
+## Running Locally using Nodemon
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
+We are using Nodemon which can be installed [here](https://www.npmjs.com/package/nodemon)
+- Running your local server: 
+'''nodemon index.js'''
+Quit the server using CTRL-C
 
-```sh
-$ git clone https://github.com/PolyProgrammers/node-js-getting-started.git
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+- You can now open your instance @ http://localhost:5000/
 
 ## Deploying to Heroku
-
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-or
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+'''git push ''' to master
 
 ## Documentation
+- dependencies are in the package.json branch
+- adding a package npm install
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
 
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+
+See the initial googledoc here: https://docs.google.com/document/d/1R8JwFRfFIoMxX9opSAVR-cSJHpxQqNU_gkiRC35pjuU/edit?usp=sharing
