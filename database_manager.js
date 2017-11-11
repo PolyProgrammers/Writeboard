@@ -18,12 +18,7 @@ class DatabaseManager {
         });        
     }
     
-    getAll() {
-        
-        var callbackWith = (items) => {
-            console.log("items fetched:")
-            return items;
-        } 
+    getAll(callback) { 
         
         var collection2 = this.database.collection('test2');
         collection2.find().toArray(function(err, items) {
@@ -53,10 +48,16 @@ class DatabaseManager {
 module.exports = new DatabaseManager();
 var dbm = new DatabaseManager();
 
+var callbackWith = (items) => {
+            console.log("items fetched:")
+            console.log(items)
+            return items;
+}
+
 setTimeout(() => {
     console.log("Running DBM tests:");
     dbm.update({mykey:1, "fieldtoupdate": "field123" });
     console.log("Update() Test completed.");
-    dbm.getAll();
+    dbm.getAll(callbackWith);
     console.log("GetAll Test completed.")
 }, 5000);
