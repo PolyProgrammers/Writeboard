@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var db = require('./database_manager.js');
+
 
 app.set('port', (process.env.PORT || 5000));
 
