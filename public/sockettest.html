@@ -1,5 +1,7 @@
 <html>
-    <head></head>
+    <head>
+        title>Socket.IO</title>
+    </head>
     <body>
         <script src="/socket.io/socket.io.js"></script>
         <script>
@@ -8,13 +10,17 @@
                 console.log("I'm connected!");
             });
 
-            socket.on('update', function(params) {
-                switch (params.type) {
-                    case "text" :
-                        console.log('text!');
-                        break;
-                }
-            });
+            var params = {
+                "uuid": 128
+            };
+            setTimeout(function() {
+                //do something
+                console.log("sending update");
+                socket.emit('update', params);
+            }, 5000);
+
+// make it so they can pass in x and you take it
+            
         </script>
     </body>
 </html>

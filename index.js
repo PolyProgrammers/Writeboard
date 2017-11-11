@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var dbManager = require('./database_manager.js');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -17,12 +18,13 @@ app.get('/', function(request, response) {
 
 io.on('connection', function(socket){
   console.log('a user connected');
+  socket.emit('newUser', dbManager.getAll());
 
-  var params = {
-    thing: socket.id
-  }
-
-  socket.emit('update', params);
+  socket.on('update', function (params) {
+    //db update
+    dbManager.update(params);
+    socket.broadcast.emit(params);
+  });
 
 });
 
