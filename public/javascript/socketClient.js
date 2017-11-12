@@ -12,22 +12,50 @@ var onLocalUpdate = function(params) {
     socket.emit('update', params);
 }
 
+
+var generateRichText = (params) =>{
+    //http://res.cloudinary.com/writeboard/image/upload/$name_!Hello%20World%20This%20is%20cool!/w_200,c_fit,l_text:Arial_60:$(name),g_north/empty.png  
+    var baseURL = "http://res.cloudinary.com/writeboard/image/upload/";
+    var tailURL = "/w_200,c_fit,l_text:Sacramento_60:$(name),g_north/empty.png"; //TODO generate this randomly
+    var text = params.text;
+    text = "$name_!" + text.replace(" ", "%20") + "!";
+    console.log("generated rich text URL");
+    return baseURL + text + tailURL;
+}
+
+var getImage = (url, params) =>{
+    var img = $('<img>');
+    img.attr('id', params.uuid);
+    img.attr('src', url); //need to create the attribute
+    img.attr('style','left:' + params.x +'px;top:' + params.y +'px;' + 'position:absolute');
+    img.appendTo(container);
+    console.log("appended to container");
+    return img;
+}
+
 var render = (params) => {
+    console.log(params.done);
     switch (params.type) {
         case "text":
+            console.log("RENDER2");
             var textField = $('#' + params.uuid);
-            if (textField.length) {
+            if (params.done == "true"){
+                console.log("RENDER3")
+                var richText = generateRichText(params);
+                console.log(richText);
+                textField.remove();
+                return getImage(richText, params);
+            } else if (textField.length) { //checks for exsistance
                 textField.val(params.text);
             }
-            else {
+                else {
                 textField = $('<input>');
                 textField.attr('id', params.uuid);
                 textField.val(params.text);
                 textField.attr('style','left:' + params.x +'px;top:' + params.y +'px;' + 'position:absolute');
                 textField.appendTo(container);
             }
-            return textField;
-            
+            return textField;       
         case "photo":
             var url = "";
             switch (params.style) {
@@ -38,11 +66,6 @@ var render = (params) => {
                     url = 'https://res.cloudinary.com/writeboard/image/upload/r_25,w_125/';
             }
             url = url + params.photo;
-            var img = $('<img>');
-            img.attr('id', params.uuid);
-            img.attr('src', url); //need to create the attrubyte
-            img.attr('style','left:' + params.x +'px;top:' + params.y +'px;' + 'position:absolute');
-            img.appendTo(container);
-            return img;
+            return getImage(url, params);
     }
   };

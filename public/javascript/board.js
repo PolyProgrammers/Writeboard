@@ -45,7 +45,16 @@ function setupTextInput(e) {
         onLocalUpdate(params);
     })
     ele.focusout(function(e) {
-
+        var params = {
+            "type": "text",
+            "uuid": e.target.id,
+            "x": e.target.offsetLeft,
+            "y": e.target.offsetTop,
+            "text": e.target.value,
+            "done": "true"
+        };
+        render(params);
+        //console.log("done is true");
         if (ele.text === "") {
             ele.remove();
             return;
