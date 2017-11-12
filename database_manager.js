@@ -25,7 +25,7 @@ class DatabaseManager {
         if (databaseMode) {
             var collection = this.database.collection('wall');
             collection.find().toArray(function(err, items) {
-                callbackWith(items)
+                callback(items)
             });
         }
     }
