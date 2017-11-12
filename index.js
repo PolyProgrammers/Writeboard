@@ -27,7 +27,7 @@ io.on('connection', function(socket){
 
   socket.on('update', function (params) {
     //db update
-    dbManager.update(params);
+    dbManager.update(params.uuid, params);
     socket.broadcast.emit('update', params);
   });
 

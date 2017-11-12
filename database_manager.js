@@ -20,7 +20,7 @@ class DatabaseManager {
     
     getAll(callback) { 
         
-        var collection = this.database.collection('test2');
+        var collection = this.database.collection('wall');
         collection.find().toArray(function(err, items) {
             callbackWith(items)
         });
