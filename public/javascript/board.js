@@ -1,5 +1,4 @@
 var container = $("#contentContainer");
-//container.click(onClick);
 container.dblclick(onClick);
 
 function uuidv4() {
@@ -128,7 +127,6 @@ function cloudinaryUpload(e) {
       cloud_name: 'writeboard',
       upload_preset: 'wallphotos',
       sources: ['local','url','camera']
-      //sources: ['local','url','camera','dropbox',   'image_search', 'facebook']
     };
     
     //generate the textfield

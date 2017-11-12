@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var dbManager = require('./database_manager.js');
+//var dbManager = require('./database_manager.js');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -23,11 +23,11 @@ io.on('connection', function(socket){
       socket.emit('update', element);
     }, this);
   };
-  dbManager.getAll(callback);
+  //dbManager.getAll(callback);
 
   socket.on('update', function (params) {
     //db update
-    dbManager.update({key: params.uuid}, params);
+    //dbManager.update({key: params.uuid}, params);
     socket.broadcast.emit('update', params);
   });
 

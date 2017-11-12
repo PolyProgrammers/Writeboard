@@ -13,7 +13,6 @@ body::selection{
     height: 2000px;
     overflow: scroll;
     background-image: url(https://n6-img-fp.akamaized.net/free-vector/abstract-geometric-pattern-background_1319-242.jpg?size=338&ext=jpg);
-    /* background-color: #F2F2F2; */
     cursor: pointer;
 }
 
@@ -32,11 +31,12 @@ body::selection{
 }
 
 input {
-    background: rgba(0, 0, 0, 0);
+    background: transparent;
     border: 0px;
     float: left;
     outline: none;
     position: absolute;
+    width: 500px;
 }
 
 .readOnly {

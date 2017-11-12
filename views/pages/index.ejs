@@ -1,14 +1,8 @@
 <html>
     <head>
-        <title>Socket.IO</title>
-        
-       
-        <script type="text/javascript" src="https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js"></script>        
-        
+        <title>Writeboard</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="stylesheets/main.css">
-        <script src = "/javascript/SmoothScrolling.js"></script>
-        
     </head>
     <body class="dragscroll" style="width: 320px; height: 160px; overflow: scroll; cursor: grab; cursor : -o-grab; cursor : -moz-grab; cursor : -webkit-grab;">
                 
@@ -16,21 +10,19 @@
         <div id="icon" class="feature map"></div>
         <div id="icon" class="feature cloud"></div>
         <div id="icon" class="feature settings"></div>
-
         
         <a href="#middle" id="icon" class="logo"></a>
         <script src="https://use.fontawesome.com/9a031a3752.js"></script>
         <div id="contentContainer">
             <div id="popup">
-                    <span onclick="insert('text');"><i class="fa fa-font-4x"></i></span>
-                    <span onclick="insert('photo');"><i class="fa fa-picture-o-4x"></i></span>
+                <span onclick="insert('text');"><i class="fa fa-font"></i></span>
+                <span onclick="insert('photo');"><i class="fa fa-picture-o"></i></span>
             </div>
         </div>
+        <script src = "/javascript/SmoothScrolling.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-        <script src="https://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
-        <script src="https://www.kirupa.com/prefixfree.min.js"></script>
-
+        <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
         <script src="/javascript/board.js"></script>
         <script src="/javascript/socketClient.js"></script>
 </body>
