@@ -52,7 +52,7 @@ var callbackWith = (items) => {
             console.log(items)
             return items;
 }
-return;
+
 setTimeout(() => {
     var test_id = {key: "123"}
     console.log("Running DBM tests:");
