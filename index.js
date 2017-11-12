@@ -17,26 +17,15 @@ app.get('/', function(request, response) {
 });
 
 io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.emit('newUser', dbManager.getAll());
+  //socket.emit('newUser', dbManager.getAll());
 
   socket.on('update', function (params) {
     //db update
-    dbManager.update(params);
-    socket.broadcast.emit(params);
+    //dbManager.update(params);
+    socket.broadcast.emit('update', params);
   });
 
 });
-
-
-setTimeout(function() {
-
-    var params = {
-      thing: "hello everyone!"
-    };
-    io.emit('message', params);
-
-}, 10000);
 
 http.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
