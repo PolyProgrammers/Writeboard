@@ -136,4 +136,5 @@ function cloudinaryUpload(e) {
     img.attr('style','left:' + params.x +'px;top:' + params.y +'px;' + 'position:absolute');
     img.appendTo(container);
     console.log("finished adding image");
+    onLocalUpdate(params);
   };
