@@ -38,11 +38,8 @@ class DatabaseManager {
 
     update(key, record) {
         var collection = this.database.collection('wall');
-        collection.insert(record, {w:1}, function(err, result) {
-            console.log(err);
-            collection.update(key, record, {w:1}, function(err, result) {
-                console.log(err);
-            });
+        collection.update(key, {$set:record}, {upsert: true}, function(err, result) {
+            if(err) { return console.dir(err); }
         });
     }
 }
