@@ -58,14 +58,14 @@ function setupTextInput(e) {
     });
 }
 
-var insert = function(option) {
+var insert = function(option, arg) {
     popup.remove();
     switch (option) {
         case "text":
             setupTextInput(lastClickEvent);
             break;
         case "photo":
-            cloudinaryUpload(lastClickEvent);
+            cloudinaryUpload(lastClickEvent, arg);
     };
 };
 
@@ -117,7 +117,7 @@ function getPosition(el) {
     };
 }
 
-function cloudinaryUpload(e) {
+function cloudinaryUpload(e, style) {
     var pos = getClickPosition(e);
 
     var uuid = uuidv4();
@@ -135,6 +135,7 @@ function cloudinaryUpload(e) {
         "uuid": uuid,
         "x" : pos.x,
         "y" : pos.y,
+        "style": style
     };
     
     cloudinary.openUploadWidget(options, 

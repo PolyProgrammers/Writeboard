@@ -29,8 +29,15 @@ var render = (params) => {
             return textField;
             
         case "photo":
-        console.log('photo render');
-            var url = 'https://res.cloudinary.com/writeboard/image/upload/t_thumbnail-round/' + params.photo;
+            var url = "";
+            switch (params.style) {
+                case "circle":
+                    url = 'https://res.cloudinary.com/writeboard/image/upload/t_thumbnail-round/';
+                    break;
+                case "rect":
+                    url = 'https://res.cloudinary.com/writeboard/image/upload/r_25,w_125/';
+            }
+            url = url + params.photo;
             var img = $('<img>');
             img.attr('id', params.uuid);
             img.attr('src', url); //need to create the attrubyte
