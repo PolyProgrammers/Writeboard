@@ -36,11 +36,13 @@ class DatabaseManager {
         var collection = this.database.collection('test2');
     }
 
-    update(record) {
-        // {id: "", text: ""}
-        var collection2 = this.database.collection('test2');
-        collection2.insert(record, {w:1}, function(err, result) {
-            collection2.update({mykey:1}, {$set:{fieldtoupdate: "field4567"}}, {w:1}, function(err, result) {});
+    update(key, record) {
+        var collection = this.database.collection('wall');
+        collection.insert(record, {w:1}, function(err, result) {
+            console.log(err);
+            collection2.update(key, record, {w:1}, function(err, result) {
+                console.log(err);
+            });
         });
     }
 }
@@ -56,7 +58,8 @@ var callbackWith = (items) => {
 
 setTimeout(() => {
     console.log("Running DBM tests:");
-    dbm.update({mykey:1, "fieldtoupdate": "field123" });
+    dbm.update({mykey:1} , {"fieldtoupdate": "field123" });
+    dbm.update({mykey:1} , {"fieldtoupdate": "field456" });
     console.log("Update() Test completed.");
     dbm.getAll(callbackWith);
     console.log("GetAll Test completed.")
