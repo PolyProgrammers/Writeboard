@@ -17,11 +17,13 @@ app.get('/', function(request, response) {
 });
 
 io.on('connection', function(socket){
-  all.forEach(function(element) {
-    socket.emit('update', element);
-  }, this);
 
-  socket.emit('newUser', dbManager.getAll());
+  var callback = (params) => {
+    params.forEach(function(element) {
+      socket.emit('update', element);
+    }, this);
+  };
+  dbManager.getAll(callback);
 
   socket.on('update', function (params) {
     //db update
