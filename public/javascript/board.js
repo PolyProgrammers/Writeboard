@@ -88,7 +88,6 @@ function getPosition(el) {
 }
 
 container.dblclick(function(el) {
-    alert( "Handler for .dblclick() called." );
     cloudinaryUpload(el);
 });
 
@@ -106,6 +105,7 @@ function cloudinaryUpload(e) {
     var parentPosition = getPosition(e.currentTarget);
     var xPosition = e.clientX - parentPosition.x;
     var yPosition = e.clientY - parentPosition.y;
+    
     //generate the textfield
     var params = {
         "uuid": uuid,
@@ -128,7 +128,7 @@ function cloudinaryUpload(e) {
   }
   
   var render = (id, params) => {
-    var url = "http://res.cloudinary.com/writeboard/image/upload/t_thumbnail-round/" + id;
+    var url = "https://res.cloudinary.com/writeboard/image/upload/t_thumbnail-round/" + id;
     console.log(url);
     var img = $('<img>');
     img.attr('id', id);
