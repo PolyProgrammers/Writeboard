@@ -1,12 +1,28 @@
 <html>
     <head>
         <title>Socket.IO</title>
+        
+        <!––Used for Drag and Dropping-->
+        <script type="text/javascript" src="https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js"></script>        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="stylesheets/main.css">
+        <script src = "/javascript/SmoothScrolling.js"></script>
+        
     </head>
-    <body>
+    <body class="dragscroll" style="width: 320px; height: 160px; overflow: scroll; cursor: grab; cursor : -o-grab; cursor : -moz-grab; cursor : -webkit-grab;">
+                
+        <h2 id="middle"></h2>
+        <div id="icon" class="feature map"></div>
+        <div id="icon" class="feature cloud"></div>
+        <div id="icon" class="feature settings"></div>
+
+        
+        <a href="#middle" id="icon" class="logo"></a>
+
         <div id="contentContainer">
-            <div id="container"></div>
-        </div>
+            </div>
+
 
 
         <script src="/socket.io/socket.io.js"></script>
@@ -24,9 +40,5 @@
 
         <script src="/javascript/board.js"></script>
         <script src="/javascript/socketClient.js"></script>
-        <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 </body>
 </html>
-
-<!--a href="#" id="upload_widget_opener">Upload multiple images</a-->
-

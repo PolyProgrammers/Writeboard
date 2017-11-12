@@ -7,8 +7,9 @@ body {
     width: 2000px;
     height: 2000px;
     border: 5px black solid;
-    overflow: hidden;
-    background-color: #F2F2F2;
+    overflow: scroll;
+    background-image: url(https://n6-img-fp.akamaized.net/free-vector/abstract-geometric-pattern-background_1319-242.jpg?size=338&ext=jpg);
+    /* background-color: #F2F2F2; */
     cursor: pointer;
 }
 .thing {
@@ -31,4 +32,90 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+#icon {
+    position: fixed;
+    margin: 10px;
+    background-color: transparent;
+}
+
+.logo {
+    top: 0;
+    height: 100px;
+    -webkit-transition: .5s;
+    -moz-transition:    .5s;
+    transition:         .5s;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.logo:link, .logo:visited {
+    width: 115px;
+    left: 12px;
+    background-image: url(/images/wb.png);
+    background-size: 100% 100%;
+
+}
+.logo:hover, .link:active {
+    width: 140px;
+    left: 0;
+    background-image: url(/images/writeboard_main.png);
+    background-size: 100% 100%;
+}
+
+.feature {
+    height: 50px;
+    width:  50px;
+    -webkit-transition: .5s;
+    -moz-transition:    .5s;
+    transition:         .5s;
+}
+.feature:hover {
+    height: 500px;
+    width:  500px;
+}
+
+.feature.map {
+    bottom: 0;
+    left: 0;
+    background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/248-200.png);
+    background-size: 100% 100%;
+}
+.feature:hover.map {
+    bottom: 0;
+    left: 0;
+    width: 75%;
+    background-image: url(/images/map1.png);
+    background-size: 100% 100%;
+}
+
+.feature.cloud {
+    bottom: 0;
+    right: 0;
+    background-image: url(https://openclipart.org/image/2400px/svg_to_png/282766/cloud-with-flat-base-CC0-by-Erland.png);
+    background-size: 100% 100%;
+}
+.feature:hover.cloud {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background-image: url(https://prorelevant.com/wp-content/uploads/2015/01/innovation-word-cloud.png);
+    background-size: 100% 100%;
+}
+
+.feature.settings {
+    top: 0;
+    right: 0;
+    background-image: url(https://image.flaticon.com/icons/png/512/22/22377.png);
+    background-size: 100% 100%;
+}
+.feature:hover.settings {
+    top: 0;
+    right: 0;
+    background-image: url(https://www.adobe.io/content/dam/udp/assets/site-images/typekit/filter-menu-01.gif);
+    background-size: 100% 100%;
+}
+
+#fontBox {
+    background-color: lightgray;
 }
