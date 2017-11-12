@@ -17,11 +17,15 @@ app.get('/', function(request, response) {
 });
 
 io.on('connection', function(socket){
-  //socket.emit('newUser', dbManager.getAll());
+  all.forEach(function(element) {
+    socket.emit('update', element);
+  }, this);
+
+  socket.emit('newUser', dbManager.getAll());
 
   socket.on('update', function (params) {
     //db update
-    //dbManager.update(params);
+    dbManager.update(params);
     socket.broadcast.emit('update', params);
   });
 
