@@ -57,9 +57,10 @@ var callbackWith = (items) => {
 }
 
 setTimeout(() => {
+    var test_id = {key: "123"}
     console.log("Running DBM tests:");
-    dbm.update({_id:1} , {"fieldtoupdate": "field123" });
-    dbm.update({_id:1} , {"fieldtoupdate": "field456" });
+    dbm.update(test_id, {"fieldtoupdate": "field123" });
+    dbm.update(test_id , {"fieldtoupdate": "field456" });
     console.log("Update() Test completed.");
     dbm.getAll(callbackWith);
     console.log("GetAll Test completed.")
