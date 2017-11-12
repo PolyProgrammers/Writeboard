@@ -28,6 +28,7 @@ function getClickPosition(e) {
     //generate the textfield
     var uuid = uuidv4();
     var params = {
+        "type": "text",
         "uuid": uuid,
         "x" : xPosition,
         "y" : yPosition
@@ -38,6 +39,7 @@ function getClickPosition(e) {
     ele.focus();
     ele.on('input', function(e) {
         var params = {
+            "type": "text",
             "uuid": e.target.id,
             "x": e.target.offsetLeft,
             "y": e.target.offsetTop,
@@ -108,9 +110,10 @@ function cloudinaryUpload(e) {
     
     //generate the textfield
     var params = {
+        "type": "photo",
         "uuid": uuid,
         "x" : xPosition,
-        "y" : yPosition
+        "y" : yPosition,
     };
     
     cloudinary.openUploadWidget(options, 
@@ -120,18 +123,20 @@ function cloudinaryUpload(e) {
         console.log(error);
       }
       if (result) {  
-        render(result[0].public_id, params);
+        console.log(result[0]);
         params.photo = result[0].public_id;
+        render(params);
+        onLocalUpdate(params);
         console.log(result);
       }
     });
   }
   
-  var render = (id, params) => {
-    var url = "https://res.cloudinary.com/writeboard/image/upload/t_thumbnail-round/" + id;
-    console.log(url);
+  var render = (params) => {
+    var url = 'https://res.cloudinary.com/writeboard/image/upload/t_thumbnail-round/' + params.photo;
+    console.log(params.photo);
     var img = $('<img>');
-    img.attr('id', id);
+    img.attr('id', params.uuid);
     img.attr('src', url); //need to create the attrubyte
     img.attr('style','left:' + params.x +'px;top:' + params.y +'px;' + 'position:absolute');
     img.appendTo(container);

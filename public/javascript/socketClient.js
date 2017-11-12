@@ -15,6 +15,10 @@ var updateLocalElement = function(params) {
     if (element.length) {
         element.val(params.text);
     }
+    else if (params.type === "photo"){
+        console.log(params);
+        render(params);
+    }
     else {
         element = newText(params);
     }
