@@ -12,11 +12,27 @@ var onLocalUpdate = function(params) {
     socket.emit('update', params);
 }
 
+var textFormat = {fontStyle:"Arial", fontSize:20, fontColor:"#000000"};
+var fontList = ["Sacramento", "Lobster", "Roboto", "Inconsolata", "Play", "Handlee", "Satisfy"];
+var sizeList = ["60", "100", "50"];
+var colorList = [];
+
+function updateFont(){
+    function randomIndex(fontArray){
+        return randIndex = Math.floor(Math.random() * fontArray.length);
+    }
+    textFormat.fontStyle = fontList[randomIndex(fontList)];
+    textFormat.fontSize = sizeList[randomIndex(sizeList)];
+    //textFormat.fontColor = colorList[randomIndex(colorList)];
+    var tailURL = "/c_fit,l_text:" + textFormat.fontStyle +"_"+ textFormat.fontSize + ":$(name),g_north/empty.png"
+    return tailURL
+}
+
 
 var generateRichText = (params) =>{
     //http://res.cloudinary.com/writeboard/image/upload/$name_!Hello%20World%20This%20is%20cool!/w_200,c_fit,l_text:Arial_60:$(name),g_north/empty.png  
     var baseURL = "http://res.cloudinary.com/writeboard/image/upload/";
-    var tailURL = "/w_200,c_fit,l_text:Sacramento_60:$(name),g_north/empty.png"; //TODO generate this randomly
+    var tailURL = updateFont();
     var text = params.text;
     text = "$name_!" + text.replace(" ", "%20") + "!";
     console.log("generated rich text URL");
