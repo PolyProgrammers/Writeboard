@@ -53,7 +53,8 @@ function setupTextInput(e) {
             "text": e.target.value,
             "done": "true"
         };
-        render(params);
+
+        onLocalUpdate(params);
         //console.log("done is true");
         if (ele.text === "") {
             ele.remove();
