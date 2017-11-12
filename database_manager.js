@@ -18,11 +18,10 @@ class DatabaseManager {
         });        
     }
     
-    getAll(callback) { 
-        
+    getAll(callback) {
         var collection = this.database.collection('wall');
         collection.find().toArray(function(err, items) {
-            callbackWith(items)
+            callback(items);
         });
     }
 
@@ -45,6 +44,8 @@ class DatabaseManager {
 }
 
 module.exports = new DatabaseManager();
+
+return;
 var dbm = new DatabaseManager();
 
 var callbackWith = (items) => {
@@ -52,7 +53,7 @@ var callbackWith = (items) => {
             console.log(items)
             return items;
 }
-return;
+
 setTimeout(() => {
     var test_id = {key: "123"}
     console.log("Running DBM tests:");
