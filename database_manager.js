@@ -20,19 +20,19 @@ class DatabaseManager {
     
     getAll(callback) { 
         
-        var collection2 = this.database.collection('test2');
-        collection2.find().toArray(function(err, items) {
+        var collection = this.database.collection('test2');
+        collection.find().toArray(function(err, items) {
             callbackWith(items)
         });
     }
 
     putDummyData() {
-        var collection2 = this.database.collection('test2');
+        var collection = this.database.collection('test2');
         var doc1 = {'hello':'doc1'};
         var doc2 = {'hello':'doc2'};
         var lotsOfDocs = [{'hello':'doc3'}, {'hello':'doc4'}, doc1, doc2];
         this.database.createCollection('test2', {strict:true}, function(err, collection) {});
-        collection2.insert(lotsOfDocs, {w:1}, function(err, result) {});
+        collection.insert(lotsOfDocs, {w:1}, function(err, result) {});
         var collection = this.database.collection('test2');
     }
 
@@ -40,7 +40,7 @@ class DatabaseManager {
         var collection = this.database.collection('wall');
         collection.insert(record, {w:1}, function(err, result) {
             console.log(err);
-            collection2.update(key, record, {w:1}, function(err, result) {
+            collection.update(key, record, {w:1}, function(err, result) {
                 console.log(err);
             });
         });
