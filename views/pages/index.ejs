@@ -2,7 +2,7 @@
     <head>
         <title>Socket.IO</title>
         
-        <!––Used for Drag and Dropping-->
+       
         <script type="text/javascript" src="https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js"></script>        
         
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -19,24 +19,17 @@
 
         
         <a href="#middle" id="icon" class="logo"></a>
-
+        <script src="https://use.fontawesome.com/9a031a3752.js"></script>
         <div id="contentContainer">
+            <div id="popup">
+                    <span onclick="insert('text');"><i class="fa fa-font-4x"></i></span>
+                    <span onclick="insert('photo');"><i class="fa fa-picture-o-4x"></i></span>
             </div>
-
-
-
+        </div>
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
         <script src="https://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
         <script src="https://www.kirupa.com/prefixfree.min.js"></script>
-
-        <script id='input' type='text/x-jquery-tmpl'>
-            <input id=${uuid} class="thing" style="left:${x}px;top:${y}px;"> ${Name}</div>
-        </script>
-
-        <script id='passive' type='text/x-jquery-tmpl'>
-            <input id=${uuid} class="thing" style="left:${x}px;top:${y}px;"> ${Name}</div>
-        </script>
 
         <script src="/javascript/board.js"></script>
         <script src="/javascript/socketClient.js"></script>
