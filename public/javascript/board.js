@@ -1,5 +1,6 @@
 var container = $("#contentContainer");
-container.click(getClickPosition);
+//container.click(onClick);
+container.dblclick(onClick);
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -8,34 +9,31 @@ function uuidv4() {
     });
 }
 
-var newText = function(params) {
-    $.tmpl(input, params).appendTo( "#contentContainer" );
-    var ele = $('#' + params.uuid);
-    ele.val(params.text);
-    return ele;
-}
-
-//function containerClicked(e) {
-//   var position = e.getClickPosition;
-//   // TODO gabby is you guuuuuuuurllllllll
-//}
-
+//get position of the click
 function getClickPosition(e) {
     var parentPosition = getPosition(e.currentTarget);
     var xPosition = e.clientX - parentPosition.x;
     var yPosition = e.clientY - parentPosition.y;
-    
+    return {
+        x: xPosition,
+        y: yPosition
+    };
+}
+
+function setupTextInput(e) {
+    var pos = getClickPosition(e);
+
     //generate the textfield
     var uuid = uuidv4();
     var params = {
         "type": "text",
         "uuid": uuid,
-        "x" : xPosition,
-        "y" : yPosition
+        "x" : pos.x,
+        "y" : pos.y
     };
-    
+
     //assign behaviors to the object
-    var ele = newText(params);
+    var ele = render(params);
     ele.focus();
     ele.on('input', function(e) {
         var params = {
@@ -59,7 +57,38 @@ function getClickPosition(e) {
             e.preventDefault();
         })
     });
+}
 
+var insert = function(option) {
+    popup.remove();
+    switch (option) {
+        case "text":
+            setupTextInput(lastClickEvent);
+            break;
+        case "photo":
+            cloudinaryUpload(lastClickEvent);
+    };
+};
+
+var popup = $('#popup');
+var prevExp = null;
+var lastClickEvent = null;
+//when the view is clicked
+function onClick(e) {
+    var pos = getClickPosition(e);
+    lastClickEvent = e;
+
+    clearTimeout(prevExp);
+    popup.remove();
+    popup.attr('style','left:' + (pos.x - 50) +'px;top:' + (pos.y - 50) +'px;');
+    popup.appendTo(container);
+    popup.focus();
+    popup.focusout(function(e) {
+        popup.remove();
+    });
+    prevExp = setTimeout(function() {
+        popup.remove();
+    }, 10000);
 }
 
 // Helper function to get an element's exact position
@@ -89,11 +118,9 @@ function getPosition(el) {
     };
 }
 
-container.dblclick(function(el) {
-    cloudinaryUpload(el);
-});
-
 function cloudinaryUpload(e) {
+    var pos = getClickPosition(e);
+
     var uuid = uuidv4();
     var name = "wallflower_" + uuid;
     var options = {
@@ -104,16 +131,12 @@ function cloudinaryUpload(e) {
       //sources: ['local','url','camera','dropbox',   'image_search', 'facebook']
     };
     
-    var parentPosition = getPosition(e.currentTarget);
-    var xPosition = e.clientX - parentPosition.x;
-    var yPosition = e.clientY - parentPosition.y;
-    
     //generate the textfield
     var params = {
         "type": "photo",
         "uuid": uuid,
-        "x" : xPosition,
-        "y" : yPosition,
+        "x" : pos.x,
+        "y" : pos.y,
     };
     
     cloudinary.openUploadWidget(options, 
@@ -125,21 +148,10 @@ function cloudinaryUpload(e) {
       if (result) {  
         console.log(result[0]);
         params.photo = result[0].public_id;
-        render(params);
+        
         onLocalUpdate(params);
         console.log(result);
       }
     });
   }
   
-  var render = (params) => {
-    var url = 'https://res.cloudinary.com/writeboard/image/upload/t_thumbnail-round/' + params.photo;
-    console.log(params.photo);
-    var img = $('<img>');
-    img.attr('id', params.uuid);
-    img.attr('src', url); //need to create the attrubyte
-    img.attr('style','left:' + params.x +'px;top:' + params.y +'px;' + 'position:absolute');
-    img.appendTo(container);
-    console.log("finished adding image");
-    onLocalUpdate(params);
-  };

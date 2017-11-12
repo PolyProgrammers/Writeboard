@@ -3,26 +3,40 @@ body {
     margin: 0px;
     margin-top: 0px;
 }
+
+body::selection{
+    background: rgba(0, 0, 0, 0);
+}
+
 #contentContainer {
     width: 2000px;
     height: 2000px;
-    border: 5px black solid;
     overflow: scroll;
     background-image: url(https://n6-img-fp.akamaized.net/free-vector/abstract-geometric-pattern-background_1319-242.jpg?size=338&ext=jpg);
     /* background-color: #F2F2F2; */
     cursor: pointer;
 }
-.thing {
-    background-color: rgba(0, 0, 0, 0);
+
+#popup {
+    background-color: #8CD1D7;
+    border-radius: 20px;
+    display: block;
+    padding: 10px;
+    position: absolute;
+    float: left;
+    z-index: 2;
+    animation-name: bounceIn;
+    animation-duration: 450ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+input {
+    background: rgba(0, 0, 0, 0);
     border: 0px;
+    float: left;
     outline: none;
     position: absolute;
-    left: 50px;
-    top: 50px;
-    float: left;
-    transition: left .5s ease-in, top .5s ease-in;
-    z-index: 1;
-    width: 2000px;
 }
 
 .readOnly {
@@ -119,3 +133,23 @@ body {
 #fontBox {
     background-color: lightgray;
 }
+
+@keyframes bounceIn{
+    0%{
+      opacity: 0;
+      transform: scale(0.3) translate3d(0,0,0);
+    }
+    50%{
+      opacity: 0.9;
+      transform: scale(1.1);
+    }
+    80%{
+      opacity: 1;
+      transform: scale(0.89);
+    }
+    100%{
+      opacity: 1;
+      transform: scale(1) translate3d(0,0,0);
+    }
+  }
+  
