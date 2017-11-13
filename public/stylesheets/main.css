@@ -60,6 +60,7 @@ input {
     -webkit-transition: .5s;
     -moz-transition:    .5s;
     transition:         .5s;
+    z-index: 3;
     background-repeat: no-repeat;
     display: inline-block;
 }

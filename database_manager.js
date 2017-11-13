@@ -1,7 +1,9 @@
 var MongoClient = require('mongodb').MongoClient,
     test = require('assert');
-var url =  "mongodb://wall:wall@ds259305.mlab.com:59305/heroku_fthfkxg6";
+var url =  process.env.MONGO_CONNSTRING;
 var databaseMode = true;
+
+console.log(url);
 
 class DatabaseManager {
     
@@ -13,7 +15,6 @@ class DatabaseManager {
         if (databaseMode) {
             MongoClient.connect(url, function (err, db) {
                 if(err) { return console.dir(err); }
-                // https://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html
                 callback(db);
             });        
         } else {
@@ -56,8 +57,10 @@ class DatabaseManager {
 module.exports = new DatabaseManager();
 
 return;
-var dbm = new DatabaseManager();
 
+//database test, run by removing return ^^:
+
+var dbm = new DatabaseManager();
 var callbackWith = (items) => {
             console.log("items fetched:")
             console.log(items)

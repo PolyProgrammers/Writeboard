@@ -57,7 +57,6 @@ function setupTextInput(e) {
         };
 
         onLocalUpdate(params);
-        //console.log("done is true");
         if (ele.text === "") {
             ele.remove();
             return;
@@ -156,12 +155,9 @@ function cloudinaryUpload(e, style) {
       if (error) {
         console.log(error);
       }
-      if (result) {  
-        console.log(result[0]);
+      if (result) {
         params.photo = result[0].public_id;
-        
         onLocalUpdate(params);
-        console.log(result);
       }
     });
   }

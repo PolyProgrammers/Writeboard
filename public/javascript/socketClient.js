@@ -31,11 +31,10 @@ function updateFont(){
 
 var generateRichText = (params) =>{
     //http://res.cloudinary.com/writeboard/image/upload/$name_!Hello%20World%20This%20is%20cool!/w_200,c_fit,l_text:Arial_60:$(name),g_north/empty.png  
-    var baseURL = "http://res.cloudinary.com/writeboard/image/upload/";
+    var baseURL = "https://res.cloudinary.com/writeboard/image/upload/";
     var tailURL = updateFont();
     var text = params.text;
     text = "$name_!" + text.replace(" ", "%20") + "!";
-    console.log("generated rich text URL");
     return baseURL + text + tailURL;
 }
 
@@ -45,20 +44,15 @@ var getImage = (url, params) =>{
     img.attr('src', url); //need to create the attribute
     img.attr('style','left:' + params.x +'px;top:' + params.y +'px;' + 'position:absolute');
     img.appendTo(container);
-    console.log("appended to container");
     return img;
 }
 
 var render = (params) => {
-    console.log(params.done);
     switch (params.type) {
         case "text":
-            console.log("RENDER2");
             var textField = $('#' + params.uuid);
             if (params.done == "true"){
-                console.log("RENDER3")
                 var richText = generateRichText(params);
-                console.log(richText);
                 textField.remove();
                 return getImage(richText, params);
             } else if (textField.length) { //checks for exsistance
