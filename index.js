@@ -26,6 +26,11 @@ io.on('connection', function(socket){
   dbManager.getAll(callback);
 
   socket.on('update', function (params) {
+
+    var data = JSON.stringify(params);
+    data = data.replace(">", "&gt;");
+    params = JSON.parse(data);
+    console.log(params);
     //db update
     dbManager.update({key: params.uuid}, params);
     socket.broadcast.emit('update', params);
