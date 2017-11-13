@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient,
     test = require('assert');
 var url =  "mongodb://wall:wall@ds259305.mlab.com:59305/heroku_fthfkxg6";
-var databaseMode = true;
+var databaseMode = false;
 
 class DatabaseManager {
     

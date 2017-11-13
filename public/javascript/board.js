@@ -35,22 +35,24 @@ function setupTextInput(e) {
     var ele = render(params);
     ele.focus();
     ele.on('input', function(e) {
+        var cleanText = e.target.value.replace(/>/g, "&gt;");  //.replace(/</g, "&lt;") left out for <3
         var params = {
             "type": "text",
             "uuid": e.target.id,
             "x": e.target.offsetLeft,
             "y": e.target.offsetTop,
-            "text": e.target.value
+            "text": cleanText
         };
         onLocalUpdate(params);
     })
     ele.focusout(function(e) {
+        var cleanText = e.target.value.replace(/>/g, "&gt;");  //.replace(/</g, "&lt;") left out for <3
         var params = {
             "type": "text",
             "uuid": e.target.id,
             "x": e.target.offsetLeft,
             "y": e.target.offsetTop,
-            "text": e.target.value,
+            "text": cleanText,
             "done": "true"
         };
 
