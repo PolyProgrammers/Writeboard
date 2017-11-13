@@ -62,12 +62,13 @@ var render = (params) => {
                 textField.remove();
                 return getImage(richText, params);
             } else if (textField.length) { //checks for exsistance
-                textField.val(params.text);
-            }
-                else {
+                cleanText = params.text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                textField.val(cleanText);
+            } else {
                 textField = $('<input>');
                 textField.attr('id', params.uuid);
-                textField.val(params.text);
+                cleanText = params.text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                textField.val(cleanText);
                 textField.attr('style','left:' + params.x +'px;top:' + params.y +'px;' + 'position:absolute');
                 textField.appendTo(container);
             }
