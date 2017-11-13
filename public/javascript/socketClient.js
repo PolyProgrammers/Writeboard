@@ -63,8 +63,7 @@ var render = (params) => {
                 return getImage(richText, params);
             } else if (textField.length) { //checks for exsistance
                 textField.val(params.text);
-            }
-                else {
+            } else {
                 textField = $('<input>');
                 textField.attr('id', params.uuid);
                 textField.val(params.text);
