@@ -9,8 +9,8 @@ body::selection{
 }
 
 #contentContainer {
-    width: 2000px;
-    height: 2000px;
+    width: 10000px;
+    height: 10000px;
     overflow: scroll;
     background-image: url(https://n6-img-fp.akamaized.net/free-vector/abstract-geometric-pattern-background_1319-242.jpg?size=338&ext=jpg);
     cursor: pointer;
